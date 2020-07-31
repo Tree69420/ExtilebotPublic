@@ -10,6 +10,7 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
     }).then(() => {
         if (!hypeVal){
             message.channel.send('The hype is already 0, you bot');
+            return;
         }
         firebase.database().ref(message.guild.id).update({
             hype: 0

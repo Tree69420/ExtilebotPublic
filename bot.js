@@ -156,7 +156,6 @@ bot.on('message', async message => {
 				return;
 			});
 		}
-		
 		let message_array = message.content.split(' ');
 		let command = message_array[0];
 		let args = message_array.slice(1);
@@ -214,7 +213,6 @@ bot.on('message', async message => {
 				cmd.run(bot, message, args, firebase, prefix);
 			}
 		}
-		
 	});
 });
 bot.on('guildCreate', async gData => {

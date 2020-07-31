@@ -12,6 +12,7 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
         return;
     }
     var reason = 'no reason';
+    var mentionId;
     if (message.mentions.members.first()){
         mentionId = message.mentions.members.first().id;
     }
@@ -20,6 +21,7 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
     }
     if (!mentionId){
         message.channel.send('Who should I kick?');
+        return;
     }
     if (!message.guild.members.cache.get(mentionId.toString()).kickable){
         message.channel.send('It seems that I am unable to kick ' + message.guild.members.cache.get(mentionId.toString()).displayName + ', more power please');

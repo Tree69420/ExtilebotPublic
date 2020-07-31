@@ -22,11 +22,11 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
         }
     }).then(() => {
         if (!mentionId){
-            message.channel.send('Who should give aphasia?');
+            message.channel.send('Who should I give aphasia?');
             return;
         }
         if (!message.guild.members.cache.get(mentionId.toString())){
-            message.channel.send('Who should give aphasia?');
+            message.channel.send('Who should I give aphasia?');
             return;
         }
         if (aphasicList){

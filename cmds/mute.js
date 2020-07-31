@@ -31,8 +31,6 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
             SEND_MESSAGES: false,
             SPEAK: false
         });
-    }).catch(error => {
-        message.channel.send('I don\'t have access to all channels, access please?')
     })
     var reason = 'no reason';
     if (message.mentions.members.first()){

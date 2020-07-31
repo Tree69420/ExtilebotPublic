@@ -1,6 +1,6 @@
 {
 	"name": "extile",
-	"version": "1.2",
+	"version": "1.2.1",
 	"description": "An all-purpose bot",
 	"main": "bot.js",
 	"dependencies": {

@@ -26,12 +26,12 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
     if (args.length >= 2){
         reason = args.slice(1).join(' ');
     }
-    message.guild.fetchBan(bot.users.cache.get(mentionId.toString())).catch(error =>{
+    message.guild.members.unban(mentionId.toString(), reason).catch(error => {
         message.channel.send('This user isn\'t banned');
         return;
+    }).then(() => {
+        message.channel.send('<@!' + mentionId + '> was unbanned for ' + reason);
     });
-    message.guild.members.unban(mentionId.toString());
-    message.channel.send('<@!' + mentionId + '> was unbanned for ' + reason);
 }
 module.exports.help = {
     name: 'unban',

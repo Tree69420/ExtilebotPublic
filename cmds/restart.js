@@ -1,6 +1,6 @@
 var token = require('../auth.json').token;
 module.exports.run = async (bot, message, args, firebase, prefix) => {
-    if (!message.member.hasPermission('ADMINISTRATOR') && message.member.id != 532572460839731220){
+    if (message.member.id != 532572460839731220){
         message.channel.send('You don\'t have perms to do this');
         return;
     }
@@ -14,5 +14,5 @@ module.exports.help = {
     name: 'restart',
     syntax: 'restart',
     usage: 'Restarts the bot',
-    perms: 'administrator'
+    perms: 'bot owner'
 }

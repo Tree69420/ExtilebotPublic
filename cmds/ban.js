@@ -23,6 +23,10 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
         message.channel.send('Who should I ban?');
         return;
     }
+    if (!message.guild.members.cache.get(mentionId.toString())){
+        message.channel.send('Who should I ban?');
+        return;
+    }
     if (!message.guild.members.cache.get(mentionId.toString()).bannable){
         message.channel.send('It seems that I am unable to ban ' + message.guild.members.cache.get(mentionId.toString()).displayName + ', more power please');
         return;
@@ -30,7 +34,7 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
     if (args.length >= 2){
         reason = args.slice(1).join(' ');
     }
-    message.guild.members.cache.get(mentionId.toString()).ban();
+    message.guild.members.ban(mentionId.toString());
     message.channel.send('<@!' + mentionId + '> was banned for ' + reason);
 }
 module.exports.help = {
