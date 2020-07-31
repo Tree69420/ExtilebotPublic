@@ -31,6 +31,7 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
             { name: prefix + 'help fun', value: 'Fun commands' },
             { name: prefix + 'help games', value: 'Games you can play'},
             { name: prefix + 'help util', value: 'Utility commands'},
+            { name: prefix + 'help misc', value: 'Miscellaneous commands'},
             { name: prefix + 'help [command]', value: 'Explains a command'}
         )
         .setTimestamp()
@@ -65,10 +66,13 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
 			.setTitle('Commands')
 			.setDescription('Fun Commands for ExtileBot')
 			.addFields(
+                { name: prefix + '8ball', value: '** **'},
                 { name: prefix + 'circus', value: '** **'},
+                { name: prefix + 'eightball', value: '** **'},
 				{ name: prefix + 'hype', value: '** **' },
                 { name: prefix + 'kenhas', value: '** **'},
-				{ name: prefix + 'name', value: '** **' },
+                { name: prefix + 'name', value: '** **' },
+                { name: prefix + 'resethype', value: '** **'},
 				{ name: prefix + 'unhype', value: '** **' },
 				{ name: prefix + 'unreal', value: '** **' },
                 { name: prefix + 'uwuify', value: '** **' }
@@ -88,7 +92,23 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
                 { name: prefix + 'bj', value: '** **'},
                 { name: prefix + 'flip', value: '** **'},
 				{ name: prefix + 'roll', value: '** **' },
-				//{ name: prefix + 'roulette', value: '** **' },
+				{ name: prefix + 'help roulette', value: '** **' },
+			)
+			.setTimestamp()
+        message.channel.send(newEmbed);
+        return;
+    }
+    if (command == 'roulette'){
+		newEmbed = await new Discord.MessageEmbed()
+			.setColor('#0099ff')
+			.setTitle('Commands')
+			.setDescription('Game Commands for ExtileBot')
+			.addFields(
+                { name: prefix + 'endgame', value: '** **'},
+                { name: prefix + 'rjoin', value: '** **'},
+                { name: prefix + 'rleave', value: '** **' },
+                { name: prefix + 'rstart', value: '** **'},
+                { name: prefix + 'shoot', value: '** **'}
 			)
 			.setTimestamp()
         message.channel.send(newEmbed);
@@ -105,6 +125,22 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
                 { name: prefix + 'prefix', value: '** **'},
 				{ name: prefix + 'restart', value: '** **' },
 				{ name: prefix + 'support', value: '** **' }
+			)
+			.setTimestamp()
+        message.channel.send(newEmbed);
+        return;
+    }
+    if (command == 'misc'){
+		newEmbed = await new Discord.MessageEmbed()
+			.setColor('#0099ff')
+			.setTitle('Commands')
+			.setDescription('Miscellaneous Commands for ExtileBot')
+			.addFields(
+				{ name: prefix + 'avatar', value: '** **' },
+				{ name: prefix + 'banner', value: '** **' },
+                { name: prefix + 'getid', value: '** **'},
+				{ name: prefix + 'send', value: '** **' },
+                { name: prefix + 'settarget', value: '** **'}
 			)
 			.setTimestamp()
         message.channel.send(newEmbed);

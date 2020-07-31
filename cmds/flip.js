@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
     var flipStr = "";
     var htarr = ['H', 'T']
     var flipArr = [];
-    for (var i = 0; i < amount; i++){
+    for (var i = 0; i < flipNo; i++){
         flipArr.push(htarr[Math.floor(Math.random())]);
     }
     message.channel.send(flipArr.join(', '));

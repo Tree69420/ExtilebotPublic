@@ -9,6 +9,7 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
     }
     if (!message.guild.me.hasPermission('MANAGE_CHANNELS')){
         message.channel.send('Channel management perms please');
+        return;
     }
     if (args.length == 0){
         message.channel.send('Who should I mute?');

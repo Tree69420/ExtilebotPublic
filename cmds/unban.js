@@ -5,6 +5,7 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
     }
     if (!message.guild.me.hasPermission('BAN_MEMBERS')){
         message.channel.send('Banning perms please');
+        return;
     }
     if (args.length == 0){
         message.channel.send('Who should I unban?');
@@ -12,8 +13,8 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
     }
     var reason = 'no reason';
     var mentionId;
-    if (message.mentions.members.first()){
-        mentionId = message.mentions.members.first().id;
+    if (message.mentions.users.first()){
+        mentionId = message.mentions.users.first().id;
     }
     if (!mentionId && parseInt(args[0], 10)){
         mentionId = parseInt(args[0], 10);
@@ -29,12 +30,12 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
         message.channel.send('This user isn\'t banned');
         return;
     });
-    message.guild.members.unban(mentionId + '');
+    message.guild.members.unban(mentionId.toString());
     message.channel.send('<@!' + mentionId + '> was unbanned for ' + reason);
 }
 module.exports.help = {
     name: 'unban',
-    syntax: 'unban [target id] [reason(optional)]',
+    syntax: 'unban [target] [reason(optional)]\n[target] can be a mention or an id',
     usage: 'Unbans the target',
     perms: 'ban members'
 }

@@ -31,7 +31,7 @@ function scramble(s) {
 function aphasia(s) {
 	var output = ''
 	for (var n = 0; n < s.trim().split(' ').length; n++) {
-		let number = Math.floor(Math.random() * wordList.length)
+		let number = Math.floor(Math.random() * wordList.length);
 		output = output + wordList[number] + ' '
 	}
 	return output;
@@ -90,8 +90,41 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
     }
 });//ping command
 bot.on('message', async message => {
-	if (message.channel.type === 'dm') return;
 	if (message.author.bot) return;
+	if (true){
+		if (eee(message.content) == true && message.content.length >= 5){
+			message.channel.send('https://tenor.com/view/ea-sports-e-ea-meme-gif-14922519');
+			return;
+		}//eee response
+		if ((message.content == 'henlo' || message.content == 'Henlo')){
+			message.channel.send('Henlo, <@!' + message.author.id + '>');
+			return;
+		}//henlo response
+		if ((message.content == 'lawl' || message.content == 'Lawl')){
+			message.channel.send('Lawl');
+			return;
+		}//lawl response
+		if (!pingus && (message.content.split(' ')[0].toLowerCase() == 'im' || message.content.split(' ')[0].toLowerCase() == 'i\'m')){
+			if (!message.content.split(' ').slice(1).join(' ')){
+				return;
+			}
+			message.channel.send('Hi ' + message.content.split(' ').slice(1).join(' ') + ', I\'m Extile');
+			return;
+		}//dad jokes
+		if (!pingus && message.content.toLowerCase().startsWith('i am')){
+			if (!message.content.split(' ').slice(2).join(' ')){
+				return;
+			}
+			message.channel.send('Hi ' + message.content.split(' ').slice(2).join(' ') + ', I\'m Extile');
+			return;
+		}//dad jokes
+		if (!pingus && message.content.toLowerCase().substring(0,18) == 'alexa, simon says '){
+			message.delete();
+			message.channel.send(message.content.split(' ').slice(3).join(' '));
+			return;
+		}//repeat after me
+	}//autoresponses
+	if (message.channel.type === 'dm') return;
 	var punished = false;
 	var aphasic = false;
 	var obsessed = false;
@@ -120,35 +153,10 @@ bot.on('message', async message => {
 				message.delete();
 				message.channel.send('<@!' + message.author.id + '>, Obsessed!');
 				message.channel.send('<@!' + message.author.id + '> was punished for obsession');
+				return;
 			});
 		}
-		if (true){
-			if (eee(message.content) == true && message.content.length >= 5){
-				message.channel.send('https://tenor.com/view/ea-sports-e-ea-meme-gif-14922519');
-				return;
-			}//eee response
-			if ((message.content == 'henlo' || message.content == 'Henlo')){
-				message.channel.send('Henlo, <@!' + message.author.id + '>');
-				return;
-			}//henlo response
-			if ((message.content == 'lawl' || message.content == 'Lawl')){
-				message.channel.send('Lawl');
-				return;
-			}//lawl response
-			if (!pingus && (message.content.split(' ')[0].toLowerCase() == 'im' || message.content.split(' ')[0].toLowerCase() == 'i\'m')){
-				message.channel.send('Hi ' + message.content.split(' ').slice(1).join(' ') + ', I\'m Extile');
-				return;
-			}//dad jokes
-			if (!pingus && message.content.toLowerCase().startsWith('i am')){
-				message.channel.send('Hi ' + message.content.split(' ').slice(2).join(' ') + ', I\'m Extile');
-				return;
-			}//dad jokes
-			if (!pingus && message.content.toLowerCase().substring(0,18) == 'alexa, simon says '){
-				message.delete();
-				message.channel.send(message.content.split(' ').slice(3).join(' '));
-				return;
-			}//repeat after me
-		}//autoresponses
+		
 		let message_array = message.content.split(' ');
 		let command = message_array[0];
 		let args = message_array.slice(1);
@@ -174,7 +182,7 @@ bot.on('message', async message => {
 			} else {
 				message.channel.send(`${message.author}: ${scramble(message.content)}`);
 			}
-		}
+		}//punished scrambling
 		if (aphasic){
 			if (!punished){
 				message.delete().catch(error => {
@@ -197,15 +205,16 @@ bot.on('message', async message => {
 			} else {
 				message.channel.send(`${message.author}: ${aphasia(message.content)}`);
 			}
-		}
+		}//aphasic randomwordsing
 		if (!command.startsWith(prefix)) return;
 		if (bot.commands.get(command.slice(prefix.length))){
 			let cmd = bot.commands.get(command.slice(prefix.length));
 			if (cmd){
-				cmd.run(bot, message, args, firebase, prefix);
 				console.log(message.author.username + ' ran the ' + command + ' command');
+				cmd.run(bot, message, args, firebase, prefix);
 			}
 		}
+		
 	});
 });
 bot.on('guildCreate', async gData => {
@@ -218,12 +227,32 @@ bot.on('guildCreate', async gData => {
 		'punishedMembers' : {},
 		'aphasicMembers' : {},
 		'rouletteWL' : {},
-		'rouletteGame' : {},
+		'rouletteGame' : {},//{leader: leaderid, playerList: {set of the things}, order: [set], curIndex: 0, playersLeft: {set of ids}}
 		'hype': 0
 	});
+	bot.user.setActivity('&help | ' + bot.guilds.cache.size.toString() + ' servers', { type: 'WATCHING' });
 });
-
-
+bot.on('guildMemberAdd', async gMember => {
+	firebase.database().ref(gMember.guild.id).update({
+		'guildMembercount': gMember.guild.memberCount,
+	});
+	var wcChnl = gMember.guild.channels.cache.find(chnl => chnl.name == 'welcome');
+	if (!wcChnl) return;
+	gMember.guild.channels.cache.get(wcChnl.id).send('Welcome <@!' + gMember.id + '> to the server!');
+});
+bot.on('guildMemberRemove', async gMember => {
+	firebase.database().ref(gMember.guild.id).update({
+		'guildMembercount': gMember.guild.memberCount,
+		'guildOwner' : gMember.guild.owner.user.username,
+		'guildOwnerId' : gMember.guild.owner.id
+	});
+});
+bot.on('guildDelete', async guild => {
+	firebase.database().ref().update({
+		[guild.id]: null
+	});
+	bot.user.setActivity('&help | ' + bot.guilds.cache.size.toString() + ' servers', { type: 'WATCHING' });
+});
 
 // Bot login
 bot.login(token);

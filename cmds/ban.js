@@ -5,12 +5,14 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
     }
     if (!message.guild.me.hasPermission('BAN_MEMBERS')){
         message.channel.send('Banning perms please');
+        return;
     }
     if (args.length == 0){
         message.channel.send('Who should I ban?');
         return;
     }
     var reason = 'no reason';
+    var mentionId;
     if (message.mentions.members.first()){
         mentionId = message.mentions.members.first().id;
     }
@@ -19,6 +21,7 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
     }
     if (!mentionId){
         message.channel.send('Who should I ban?');
+        return;
     }
     if (!message.guild.members.cache.get(mentionId.toString()).bannable){
         message.channel.send('It seems that I am unable to ban ' + message.guild.members.cache.get(mentionId.toString()).displayName + ', more power please');

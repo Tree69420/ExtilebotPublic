@@ -1,16 +1,14 @@
 {
-	"name": "Extile",
-	"version": "1.0 Alpha",
-	"description": "Henlo",
+	"name": "extile",
+	"version": "1.2",
+	"description": "An all-purpose bot",
 	"main": "bot.js",
 	"dependencies": {
 		"-": "0.0.1",
-		"discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
 		"discord.js": "^12.2.0",
 		"dotenv": "^8.2.0",
-		"firebase": "^7.15.5",
-		"firebase-admin": "^8.12.1",
+		"firebase": "^7.16.0",
 		"save": "^2.4.0",
-		"winston": "^3.2.1"
+		"word-list-json": "^0.2.0"
 	}
 }

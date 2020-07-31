@@ -5,6 +5,7 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
     }
     if (!message.guild.me.hasPermission('KICK_MEMBERS')){
         message.channel.send('Kicking perms please');
+        return;
     }
     if (args.length == 0){
         message.channel.send('Who should I kick?');

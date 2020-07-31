@@ -29,8 +29,8 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
         message.channel.send('Breh stop, it will lag');
         return;
     }
-    if (rollMin < rollMax){
-        message.channel.send('The minimum can\'t be less than the maximum!');
+    if (rollMin > rollMax){
+        message.channel.send('The maximum can\'t be less than the minimum!');
         return;
     }
     if (rollMax > 99){
@@ -42,7 +42,7 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
         return;
     }
     var rollArr = [];
-    for (var i = 0; i < amount; i++){
+    for (var i = 0; i < rollNo; i++){
         rollArr.push((Math.floor((rollMax - rollMin + 1) * Math.random()) + rollMin).toString());
     }
     message.channel.send(rollArr.join(', '));

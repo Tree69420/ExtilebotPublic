@@ -4,7 +4,11 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
         message.channel.send('You don\'t have perms to do this');
         return;
     }
-    message.channel.send('Restarting...').then(() => bot.destroy()).then(() => bot.login(token)).then(() => message.channel.send('Back up!')).then(() => bot.user.setActivity('&help | ' + bot.guilds.cache.size.toString() + ' servers', { type: 'WATCHING' })).then(() => console.log('Restarted successfully'));
+    message.channel.send('Restarting...').then(() => bot.destroy()
+    ).then(() => bot.login(token)
+    ).then(() => bot.user.setActivity('&help | ' + bot.guilds.cache.size.toString() + ' servers', { type: 'WATCHING' })
+    ).then(() => message.channel.send('Back up!')
+    ).then(() => console.log('Restarted successfully'));
 }
 module.exports.help = {
     name: 'restart',
