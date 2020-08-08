@@ -54,7 +54,8 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
 				{ name: prefix + 'punish', value: '** **' },
                 { name: prefix + 'purge', value: '** **' },
 				{ name: prefix + 'unmute', value: '** **' },
-				{ name: prefix + 'unpunish', value: '** **' }
+                { name: prefix + 'unpunish', value: '** **' },
+                { name: prefix + 'membercount', value: '** **'}
 			)
 			.setTimestamp()
         message.channel.send(newEmbed);
@@ -92,7 +93,7 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
                 { name: prefix + 'bj', value: '** **'},
                 { name: prefix + 'flip', value: '** **'},
 				{ name: prefix + 'roll', value: '** **' },
-				{ name: prefix + 'help roulette', value: '** **' },
+				{ name: prefix + 'help roulette', value: '** **' }
 			)
 			.setTimestamp()
         message.channel.send(newEmbed);
@@ -102,11 +103,12 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
 		newEmbed = await new Discord.MessageEmbed()
 			.setColor('#0099ff')
 			.setTitle('Commands')
-			.setDescription('Game Commands for ExtileBot')
+			.setDescription('Roulette Commands for ExtileBot')
 			.addFields(
                 { name: prefix + 'endgame', value: '** **'},
                 { name: prefix + 'rjoin', value: '** **'},
                 { name: prefix + 'rleave', value: '** **' },
+                { name: prefix + 'rparty', value: '** **'},
                 { name: prefix + 'rstart', value: '** **'},
                 { name: prefix + 'shoot', value: '** **'}
 			)
@@ -124,7 +126,8 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
 				{ name: prefix + 'ping', value: '** **' },
                 { name: prefix + 'prefix', value: '** **'},
 				{ name: prefix + 'restart', value: '** **' },
-				{ name: prefix + 'support', value: '** **' }
+                { name: prefix + 'support', value: '** **' },
+                { name: prefix + 'invite', value: '** **'}
 			)
 			.setTimestamp()
         message.channel.send(newEmbed);

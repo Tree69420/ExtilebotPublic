@@ -31,7 +31,7 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
             SEND_MESSAGES: false,
             SPEAK: false
         });
-    })
+    });
     var reason = 'no reason';
     if (message.mentions.members.first()){
         mentionId = message.mentions.members.first().id;
@@ -41,6 +41,10 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
     }
     if (!mentionId){
         message.channel.send('Who should I mute?');
+    }
+    if (!message.guild.members.cache.get(mentionId.toString())){
+        message.channel.send('The user specified is not in the server');
+        return;
     }
     if (message.guild.members.cache.get(mentionId.toString()).roles.cache.has(muterole.id)){
         message.channel.send(message.guild.members.cache.get(mentionId.toString()).displayName + ' is already muted, you bot\nTanqies, Bjarnav');

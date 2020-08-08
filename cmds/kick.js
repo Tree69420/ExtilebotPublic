@@ -23,6 +23,10 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
         message.channel.send('Who should I kick?');
         return;
     }
+    if (!message.guild.members.cache.get(mentionId.toString())){
+        message.channel.send('The user specified is not in the server');
+        return;
+    }
     if (!message.guild.members.cache.get(mentionId.toString()).kickable){
         message.channel.send('It seems that I am unable to kick ' + message.guild.members.cache.get(mentionId.toString()).displayName + ', more power please');
         return;

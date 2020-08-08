@@ -24,7 +24,7 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
         return;
     }
     if (!message.guild.members.cache.get(mentionId.toString())){
-        message.channel.send('Who should I ban?');
+        message.channel.send('The user specified is not in the server');
         return;
     }
     if (!message.guild.members.cache.get(mentionId.toString()).bannable){
