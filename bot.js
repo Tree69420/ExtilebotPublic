@@ -104,7 +104,7 @@ bot.on('message', async message => {
 			message.channel.send('Lawl');
 			return;
 		}//lawl response
-		if (!pingus && (message.content.split(' ')[0].toLowerCase() == 'im' || message.content.split(' ')[0].toLowerCase() == 'i\'m')){
+		if (!pingus && (message.content.split(' ')[0].toLowerCase() == 'im' || message.content.split(' ')[0].toLowerCase() == 'i\'m' || message.content.split(' ')[0].toLowerCase() == 'i’m')){
 			if (!message.content.split(' ').slice(1).join(' ')){
 				return;
 			}
@@ -211,7 +211,9 @@ bot.on('message', async message => {
 			if (cmd){
 				console.log(message.author.username + ' ran the ' + command + ' command');
 				cmd.run(bot, message, args, firebase, prefix);
+				return;
 			}
+			message.channel.send('\'' + message.content + '\'is not recognized as an internal or external command, operable program, or batch file\nUse ' + prefix + 'help to get my command list');
 		}
 	});
 });
@@ -234,9 +236,9 @@ bot.on('guildMemberAdd', async gMember => {
 	firebase.database().ref(gMember.guild.id).update({
 		'guildMembercount': gMember.guild.memberCount,
 	});
-	var wcChnl = gMember.guild.channels.cache.find(chnl => chnl.name == 'welcome');
+	var wcChnl = gMember.guild.systemChannel;
 	if (!wcChnl) return;
-	gMember.guild.channels.cache.get(wcChnl.id).send('Welcome <@!' + gMember.id + '> to the server!');
+	wcChnl.send('Welcome <@!' + gMember.id + '> to the server!');
 });
 bot.on('guildMemberRemove', async gMember => {
 	firebase.database().ref(gMember.guild.id).update({
