@@ -104,7 +104,7 @@ bot.on('message', async message => {
 			message.channel.send('Lawl');
 			return;
 		}//lawl response
-		if (!pingus && (message.content.split(' ')[0].toLowerCase() == 'im' || message.content.split(' ')[0].toLowerCase() == 'i\'m' || message.content.split(' ')[0].toLowerCase() == 'i’m')){
+		if (!pingus && (message.content.split(' ')[0].toLowerCase() == 'im' || message.content.split(' ')[0].toLowerCase() == 'i\'m' || message.content.split(' ')[0].toLowerCase() == 'i’m' || message.content.split(' ')[0].toLowerCase() == 'i‘m')){
 			if (!message.content.split(' ').slice(1).join(' ')){
 				return;
 			}
