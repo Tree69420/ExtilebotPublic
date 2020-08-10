@@ -1,5 +1,5 @@
 const replist = require('../8ball.json').replies;
-module.exports.run = async (bot, message, args, firebase, prefix) => {
+module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
     if (!args){
         message.channel.send('Breh what\'s your question?');
         return;

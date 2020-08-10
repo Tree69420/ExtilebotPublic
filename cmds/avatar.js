@@ -1,4 +1,4 @@
-module.exports.run = async (bot, message, args, firebase, prefix) => {
+module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
     if (args.length == 0){
         message.channel.send(message.author.displayAvatarURL());
         return;

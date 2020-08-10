@@ -20,7 +20,7 @@ fs.readdir('./cmds', (err,files) => {
         };
     });
 });
-module.exports.run = async (bot, message, args, firebase, prefix) => {
+module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
     if (!args[0]){
         var newEmbed = await new Discord.MessageEmbed()
         .setColor('#0099ff')

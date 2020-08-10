@@ -1,4 +1,5 @@
-module.exports.run = async (bot, message, args, firebase, prefix) => {
+module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
+	if (oofed) return;
     if (message.content.toLowerCase().includes('@everyone') || message.content.toLowerCase().includes('@here') || message.content.toLowerCase().includes('<@') && message.content.toLowerCase().includes('>')){
         message.channel.send('<@!' + message.author.id + '>, get pinged');
         return;

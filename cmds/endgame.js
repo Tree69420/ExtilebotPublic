@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-module.exports.run = async (bot, message, args, firebase, prefix) => {
+module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
     if (!message.member.hasPermission('ADMINISTRATOR')){
         message.channel.send('You\'re not an admin, bruh');
         return;

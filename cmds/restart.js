@@ -1,5 +1,5 @@
 var token = require('../auth.json').token;
-module.exports.run = async (bot, message, args, firebase, prefix) => {
+module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
     if (message.member.id != 532572460839731220){
         message.channel.send('You don\'t have perms to do this');
         return;

@@ -1,4 +1,4 @@
-module.exports.run = async (bot, message, args, firebase, prefix) => {
+module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
     message.channel.send('https://discord.com/oauth2/authorize?client_id=' + bot.user.id + '&permissions=8&scope=bot');
 }
 module.exports.help = {

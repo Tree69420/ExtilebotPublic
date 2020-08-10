@@ -1,4 +1,4 @@
-module.exports.run = async (bot, message, args, firebase, prefix) => {
+module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
     if (args.length == 0){
         args = '';
     }
@@ -12,14 +12,13 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
         if (args.length >= 1){
             reason = ' for ' + args.join(' ');
         }
+        if (oofed) reason = '';
         firebase.database().ref(message.guild.id).update({
             hype: hypeVal + 1
         }).then(() => {
             message.channel.send(hypeVal + 1 + ' hype' + reason);
         });
     });
-    
-    
 }
 
 module.exports.help = {

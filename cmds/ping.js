@@ -1,4 +1,4 @@
-module.exports.run = async (bot, message, args, firebase, prefix) => {
+module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
     message.channel.send('Pinging...').then(message => {
         message.edit('Pong! \`\`ms\`\`');
     });

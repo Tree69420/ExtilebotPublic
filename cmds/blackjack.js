@@ -52,7 +52,7 @@ function bjScore(arr){
 	}
 	return curSum;
 }//blackjack score calc
-module.exports.run = async (bot, message, args, firebase, prefix) => {
+module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
     var bjList;
     var reason = 'no reason';
     firebase.database().ref('blackjack').once('value').then(function(snap) {

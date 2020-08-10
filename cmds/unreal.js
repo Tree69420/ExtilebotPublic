@@ -1,9 +1,13 @@
-module.exports.run = async (bot, message, args, firebase, prefix) => {
+module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
+	if (oofed) return;
     if (message.content.toLowerCase().includes('@everyone') || message.content.toLowerCase().includes('@here') || message.content.toLowerCase().includes('<@') && message.content.toLowerCase().includes('>')){
         message.channel.send('<@!' + message.author.id + '>, get pinged');
         return;
     }
-    if (!args) return;
+    if (!args){
+        message.channel.send('Specify the object of the sentence');
+        return;
+    }
     if (args.join(' ').toUpperCase() == args.join(' ') && args.join(' ').toLowerCase() != args.join(' ')){
         message.channel.send(args.join(' ') + ' IS ABSOLUTELY UNREAL!');
     }

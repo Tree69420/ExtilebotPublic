@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-module.exports.run = async (bot, message, args, firebase, prefix) => {
+module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
     var rWL;
     var rGame;
     firebase.database().ref(message.guild.id).once('value').then(function(snap) {

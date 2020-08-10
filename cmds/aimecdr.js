@@ -1,4 +1,4 @@
-module.exports.run = async (bot, message, args, firebase, prefix) => {
+module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
     message.channel.send('https://mathblitz.herokuapp.com');
 }
 module.exports.help = {

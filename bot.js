@@ -104,20 +104,6 @@ bot.on('message', async message => {
 			message.channel.send('Lawl');
 			return;
 		}//lawl response
-		if (!pingus && (message.content.split(' ')[0].toLowerCase() == 'im' || message.content.split(' ')[0].toLowerCase() == 'i\'m' || message.content.split(' ')[0].toLowerCase() == 'i’m' || message.content.split(' ')[0].toLowerCase() == 'i‘m')){
-			if (!message.content.split(' ').slice(1).join(' ')){
-				return;
-			}
-			message.channel.send('Hi ' + message.content.split(' ').slice(1).join(' ') + ', I\'m Extile');
-			return;
-		}//dad jokes
-		if (!pingus && message.content.toLowerCase().startsWith('i am')){
-			if (!message.content.split(' ').slice(2).join(' ')){
-				return;
-			}
-			message.channel.send('Hi ' + message.content.split(' ').slice(2).join(' ') + ', I\'m Extile');
-			return;
-		}//dad jokes
 		if (!pingus && message.content.toLowerCase().substring(0,18) == 'alexa, simon says '){
 			message.delete();
 			message.channel.send(message.content.split(' ').slice(3).join(' '));
@@ -130,6 +116,7 @@ bot.on('message', async message => {
 	var obsessed = false;
 	var prefix = '&';
 	var pingus = false;
+	var oofed = true;
 	firebase.database().ref(message.guild.id).once('value').then(function (snap) {
 		if (message.content.toLowerCase().includes('biswadev')) obsessed = true;
 		if (snap.val()){
@@ -205,12 +192,29 @@ bot.on('message', async message => {
 				message.channel.send(`${message.author}: ${aphasia(message.content)}`);
 			}
 		}//aphasic randomwordsing
+		if (!punished && !aphasic){
+			if (!pingus && (message.content.split(' ')[0].toLowerCase() == 'im' || message.content.split(' ')[0].toLowerCase() == 'i\'m' || message.content.split(' ')[0].toLowerCase() == 'i’m' || message.content.split(' ')[0].toLowerCase() == 'i‘m')){
+				if (!message.content.split(' ').slice(1).join(' ')){
+					return;
+				}
+				message.channel.send('Hi ' + message.content.split(' ').slice(1).join(' ') + ', I\'m Extile');
+				return;
+			}//dad jokes
+			if (!pingus && message.content.toLowerCase().startsWith('i am')){
+				if (!message.content.split(' ').slice(2).join(' ')){
+					return;
+				}
+				message.channel.send('Hi ' + message.content.split(' ').slice(2).join(' ') + ', I\'m Extile');
+				return;
+			}//dad jokes
+			oofed = false;
+		}
 		if (!command.startsWith(prefix)) return;
 		if (bot.commands.get(command.slice(prefix.length))){
 			let cmd = bot.commands.get(command.slice(prefix.length));
 			if (cmd){
 				console.log(message.author.username + ' ran the ' + command + ' command');
-				cmd.run(bot, message, args, firebase, prefix);
+				cmd.run(bot, message, args, firebase, prefix, oofed);
 				return;
 			}
 			message.channel.send('\'' + message.content + '\'is not recognized as an internal or external command, operable program, or batch file\nUse ' + prefix + 'help to get my command list');

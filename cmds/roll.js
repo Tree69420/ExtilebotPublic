@@ -1,4 +1,4 @@
-module.exports.run = async (bot, message, args, firebase, prefix) => {
+module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
     var rollNo = 1;
     var rollMin = 1;
     var rollMax = 6;
@@ -38,7 +38,7 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
         return;
     }
     if (rollMin < -99){
-        message.channel.send9('The minimum is too small, it will lag');
+        message.channel.send('The minimum is too small, it will lag');
         return;
     }
     var rollArr = [];
