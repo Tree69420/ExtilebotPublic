@@ -117,6 +117,7 @@ bot.on('message', async message => {
 	var prefix = '&';
 	var pingus = false;
 	var oofed = true;
+	if (message.content.includes('@everyone') || message.content.includes('@here') || (message.content.includes('<@') && message.content.includes('>'))) pingus = true;
 	firebase.database().ref(message.guild.id).once('value').then(function (snap) {
 		if (message.content.toLowerCase().includes('biswadev')) obsessed = true;
 		if (snap.val()){
