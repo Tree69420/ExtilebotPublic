@@ -4,7 +4,7 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
         message.channel.send('<@!' + message.author.id + '>, get pinged');
         return;
     }
-    if (!args) return;
+    if (!args.length) return;
     if (args.join(' ').toUpperCase() == args.join(' ') && args.join(' ').toLowerCase() != args.join(' ')){
         message.channel.send('MY NAME IS ' + args.join(' '));
     }

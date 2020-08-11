@@ -4,8 +4,8 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
         message.channel.send('<@!' + message.author.id + '>, get pinged');
         return;
     }
-    if (!args){
-        message.channel.send('Specify the object of the sentence');
+    if (!args.length){
+        message.channel.send('What should I uwuify?');
         return;
     }
     var arr = args.join(' ').split('');

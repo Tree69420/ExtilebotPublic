@@ -4,8 +4,8 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
         message.channel.send('<@!' + message.author.id + '>, get pinged');
         return;
     }
-    if (!args){
-        message.channel.send('Specify the object of the sentence');
+    if (!args.length){
+        message.channel.send('What is absolutely unreal?');
         return;
     }
     if (args.join(' ').toUpperCase() == args.join(' ') && args.join(' ').toLowerCase() != args.join(' ')){
