@@ -47,13 +47,17 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
 			.setDescription('Moderation Commands for ExtileBot')
 			.addFields(
                 { name: prefix + 'aphasia', value: '** **'},
-				{ name: prefix + 'ban', value: '** **' },
+                { name: prefix + 'ban', value: '** **' },
+                { name: prefix + 'banphrase', value: '** **'},
+                { name: prefix + 'banphrases', value: '** **'},
                 { name: prefix + 'dephasia', value: '** **'},
 				{ name: prefix + 'kick', value: '** **' },
                 { name: prefix + 'membercount', value: '** **'},
 				{ name: prefix + 'mute', value: '** **' },
 				{ name: prefix + 'punish', value: '** **' },
                 { name: prefix + 'purge', value: '** **' },
+                { name: prefix + 'unban', value: '** **'},
+                { name: prefix + 'unbanphrase', value: '** **'},
 				{ name: prefix + 'unmute', value: '** **' },
                 { name: prefix + 'unpunish', value: '** **' }
 			)
@@ -140,7 +144,9 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
 			.setDescription('Miscellaneous Commands for ExtileBot')
 			.addFields(
 				{ name: prefix + 'avatar', value: '** **' },
-				{ name: prefix + 'banner', value: '** **' },
+                { name: prefix + 'banner', value: '** **' },
+                { name: prefix + 'disable', value: '** **'},
+                { name: prefix + 'enable', value: '** **'},
                 { name: prefix + 'getid', value: '** **'},
 				{ name: prefix + 'send', value: '** **' },
                 { name: prefix + 'settarget', value: '** **'}

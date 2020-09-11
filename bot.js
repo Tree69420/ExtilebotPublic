@@ -119,6 +119,7 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
 			}
 		}
 	}).then(() => {
+		var usedbphrase = false;
 		for (var phrase in bphrases){
 			if (msg.toLowerCase().includes(phrase) && !(msg.startsWith(prefix) && newMessage.member.hasPermission('MANAGE_MESSAGES'))){
 				if (bphrases[phrase] == 'ban'){
