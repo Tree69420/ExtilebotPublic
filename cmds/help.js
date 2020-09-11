@@ -21,7 +21,8 @@ fs.readdir('./cmds', (err,files) => {
     });
 });
 module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
-    if (!args[0]){
+    var command = args[0];
+    if (!command){
         var newEmbed = await new Discord.MessageEmbed()
         .setColor('#0099ff')
         .setTitle('Commands')
@@ -38,7 +39,6 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
         message.channel.send(newEmbed);
         return;
     }
-    var command = args[0];
     if (!cmds) return;
     if (command == 'mod'){
 		newEmbed = await new Discord.MessageEmbed()
@@ -50,12 +50,12 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
 				{ name: prefix + 'ban', value: '** **' },
                 { name: prefix + 'dephasia', value: '** **'},
 				{ name: prefix + 'kick', value: '** **' },
+                { name: prefix + 'membercount', value: '** **'},
 				{ name: prefix + 'mute', value: '** **' },
 				{ name: prefix + 'punish', value: '** **' },
                 { name: prefix + 'purge', value: '** **' },
 				{ name: prefix + 'unmute', value: '** **' },
-                { name: prefix + 'unpunish', value: '** **' },
-                { name: prefix + 'membercount', value: '** **'}
+                { name: prefix + 'unpunish', value: '** **' }
 			)
 			.setTimestamp()
         message.channel.send(newEmbed);

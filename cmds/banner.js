@@ -1,4 +1,4 @@
-module.exports.run = async (bot, message, args, firebase, prefix) => {
+module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
     if (!message.guild.iconURL('png', true, 128)){
         message.channel.send('There is no banner');
         return;

@@ -29,9 +29,11 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
     if (args.length >= 2){
         reason = args.slice(1).join(' ');
     }
-    message.delete();
-    message.channel.bulkDelete(deleteNo);
-    message.channel.send('<@!' + message.author.id + '> deleted ' + deleteNo + ' messages');
+    message.channel.bulkDelete(deleteNo + 1);
+    message.channel.send('<@!' + message.author.id + '> deleted ' + deleteNo + ' messages').then(msg => {
+        msg.delete({ timeout: 5000});
+    })
+    
 }
 module.exports.help = {
     name: 'purge',

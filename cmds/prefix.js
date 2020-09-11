@@ -16,6 +16,10 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
         message.channel.send('Breh that\'s the same prefix LMAO');
         return;
     }
+    if (prefix == '\u200b'){
+        message.channel.send('Sorry, but prefixes can\'t be zero width (not everyone has zero width space copied on their keyboard :/)');
+        return;
+    }
     firebase.database().ref(message.guild.id).update({
         'prefix' : nPrefix[0]
     }).then(() => {

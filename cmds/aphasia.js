@@ -17,7 +17,7 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
         if (message.mentions.members.first()){
             mentionId = message.mentions.members.first().id;
         }
-        else if (parseInt(args[0], 10)){
+        if (!mentionId && parseInt(args[0], 10)){
             mentionId = parseInt(args[0], 10);
         }
     }).then(() => {

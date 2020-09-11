@@ -27,11 +27,11 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
                     return;
                 }
                 embed.addFields(
-                    { name: 'Plebs', value: '** **', inline: true}
+                    { name: 'Plebs', value: '\u200B', inline: true}
                 )
                 for (player in rWL){
                     embed.addFields(
-                        { name: '** **', value: '<@!' + player + '>'}
+                        { name: '\u200B', value: '<@!' + player + '>'}
                     )
                 }
                 message.channel.send(embed)
@@ -55,17 +55,17 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
                 return;
             }
             embed.addFields(
-                { name: 'Plebs', value: '** **'}
+                { name: 'Plebs', value: '\u200B'}
             )
             for (player in rGame.playerList){
                 if (rGame.playersLeft.player){
                     embed.addFields(
-                        { name: '** **', value: '<@!' + player + '>(alive)'}
+                        { name: '\u200B', value: '<@!' + player + '>(alive)'}
                     )
                 }
                 else{
                     embed.addFields(
-                        { name: '** **', value: '<@!' + player + '>(dead)'}
+                        { name: '\u200B', value: '<@!' + player + '>(dead)'}
                     )
                 }
             }
