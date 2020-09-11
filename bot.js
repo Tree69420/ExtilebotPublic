@@ -206,10 +206,10 @@ bot.on('message', async message => {
 				}
 			}
 			if (snap.val().aresp){
-				dadjoking = snap.val().dadjoking;
-				eeeee = snap.val().eeeee;
-				lawl = snap.val().lawl;
-				henlo = snap.val().henlo;
+				dadjoking = snap.val().aresp.dadjoking;
+				eeeee = snap.val().aresp.eeeee;
+				lawl = snap.val().aresp.lawl;
+				henlo = snap.val().aresp.henlo;
 			}
 		}
 	}).then(() => {
