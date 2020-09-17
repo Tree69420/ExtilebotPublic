@@ -40,6 +40,10 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
         message.channel.send(message.guild.members.cache.get(mentionId.toString()).displayName + ' isn\'t muted, you bot\nTanqies, Bjarnav');
         return;
     }
+    if (message.member.roles.highest.comparePositionTo(message.mentions.members.first().roles.highest) <= 0){
+        message.channel.send('Sorry, your highest role is not higher than the target\'s highest role');
+        return;
+    }
     message.guild.members.cache.get(mentionId.toString()).roles.remove(muterole);
     message.channel.send('<@!' + mentionId + '> was unmuted');
 }

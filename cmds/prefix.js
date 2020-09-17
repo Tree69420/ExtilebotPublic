@@ -12,11 +12,12 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
         message.channel.send('Prefixes can\'t have spaces');
         return;
     }
+    var a = 'asfdasfasdf';
     if (prefix == nPrefix[0]){
         message.channel.send('Breh that\'s the same prefix LMAO');
         return;
     }
-    if (prefix == '\u200b'){
+    if (nPrefix[0] == '\u200b' || nPrefix[0] == '\u200d'){
         message.channel.send('Sorry, but prefixes can\'t be zero width (not everyone has zero width space copied on their keyboard :/)');
         return;
     }

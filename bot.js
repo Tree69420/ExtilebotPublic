@@ -103,6 +103,7 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
         newMessage.edit(`Pong! \`\`${Math.floor(newMessageTimestamp - oldMessageTimestamp)}ms\`\``);
 	}
 	var msg = newMessage.content.split('‍\u200b').join('');
+	msg = msg.split('\u200d').join('');
 	if (msg.toLowerCase().includes('biswadev')){
 		firebase.database().ref(newMessage.guild.id + '/punishedMembers').update({
 			[newMessage.author.id]: newMessage.author.id
@@ -112,14 +113,25 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
 		newMessage.channel.send('<@!' + newMessage.author.id + '> was punished for obsession');
 	}
 	var bphrases;
+	var banping;
 	firebase.database().ref(newMessage.guild.id).once('value').then(function (snap) {
 		if (snap.val()){
 			if (snap.val().bphrases){
 				bphrases = snap.val().bphrases;
 			}
+			if (snap.val().banping){
+				banping = snap.val().banping;
+			}
 		}
 	}).then(() => {
 		var usedbphrase = false;
+		if (banping > 0){
+			if (newMessage.mentions.members.size >= banping){
+				newMessage.channel.send('<@' + newMessage.member.id + '> was banned for spam pinging')
+				newMessage.member.ban();
+				return;
+			}
+		}
 		for (var phrase in bphrases){
 			if (msg.toLowerCase().includes(phrase) && !(msg.startsWith(prefix) && newMessage.member.hasPermission('MANAGE_MESSAGES'))){
 				if (bphrases[phrase] == 'ban'){
@@ -186,7 +198,9 @@ bot.on('message', async message => {
 	var lawl = true;
 	var henlo = true;
 	var msg = message.content.split('‍‍\u200b').join('');
+	msg = msg.split('\u200d').join('');
 	var bphrases;
+	var banping;
 	if (message.content.includes('@everyone') || message.content.includes('@here') || (message.content.includes('<@') && message.content.includes('>'))) pingus = true;
 	firebase.database().ref(message.guild.id).once('value').then(function (snap) {
 		if (msg.toLowerCase().includes('biswadev')) obsessed = true;
@@ -205,6 +219,9 @@ bot.on('message', async message => {
 					aphasic = true;
 				}
 			}
+			if (snap.val().banping){
+				banping = snap.val().banping;
+			}
 			if (snap.val().aresp){
 				dadjoking = snap.val().aresp.dadjoking;
 				eeeee = snap.val().aresp.eeeee;
@@ -213,6 +230,14 @@ bot.on('message', async message => {
 			}
 		}
 	}).then(() => {
+		if (banping > 0){
+			if (message.mentions.members.size >= banping){
+				message.channel.send('<@' + message.member.id + '> was banned for spam pinging');
+				message.delete();
+				message.member.ban();
+				return;
+			}
+		}
 		if (true){
 			if (eee(msg) == true && msg.length >= 5 && eeeee){
 				message.channel.send('https://tenor.com/view/ea-sports-e-ea-meme-gif-14922519');

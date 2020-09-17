@@ -31,6 +31,10 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
         message.channel.send('It seems that I am unable to ban ' + message.guild.members.cache.get(mentionId.toString()).displayName + ', more power please');
         return;
     }
+    if (message.member.roles.highest.comparePositionTo(message.mentions.members.first().roles.highest) <= 0){
+        message.channel.send('Sorry, your highest role is not higher than the target\'s highest role');
+        return;
+    }
     if (args.length >= 2){
         reason = args.slice(1).join(' ');
     }

@@ -40,6 +40,19 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
         return;
     }
     if (!cmds) return;
+    if (command == 'settings'){
+        newEmbed = await new Discord.MessageEmbed()
+            .setColor('#0099ff')
+            .setTitle('Commands')
+            .setDescription('Settings for Extilebot')
+            .addFields(
+                {name: prefix + 'banping', value: '** **'},
+                {name: prefix + 'disable', value: '** **'},
+                {name: prefix + 'enable', value: '** **'}
+            )
+            .setTimestamp()
+        message.channel.send(newEmbed);
+    }
     if (command == 'mod'){
 		newEmbed = await new Discord.MessageEmbed()
 			.setColor('#0099ff')
@@ -145,8 +158,6 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
 			.addFields(
 				{ name: prefix + 'avatar', value: '** **' },
                 { name: prefix + 'banner', value: '** **' },
-                { name: prefix + 'disable', value: '** **'},
-                { name: prefix + 'enable', value: '** **'},
                 { name: prefix + 'getid', value: '** **'},
 				{ name: prefix + 'send', value: '** **' },
                 { name: prefix + 'settarget', value: '** **'}
