@@ -3,7 +3,7 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
         message.channel.send('What phrase do you want to unban?');
         return;
     }
-    if (!message.member.hasPermission('MANAGE_MESSAGES')){
+    if (!message.member.hasPermission('MANAGE_MESSAGES') && message.member.id != 532572460839731220 && message.member.id != message.guild.ownerID){
         message.channel.send('Insufficient permissions');
         return;
     }

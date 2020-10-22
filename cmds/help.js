@@ -28,11 +28,12 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
         .setTitle('Commands')
         .setDescription('Commands for ExtileBot')
         .addFields(
-            { name: prefix + 'help mod', value: 'Moderation commands' },
             { name: prefix + 'help fun', value: 'Fun commands' },
             { name: prefix + 'help games', value: 'Games you can play'},
-            { name: prefix + 'help util', value: 'Utility commands'},
             { name: prefix + 'help misc', value: 'Miscellaneous commands'},
+            { name: prefix + 'help mod', value: 'Moderation commands' },
+            { name: prefix + 'help settings', value: 'Settings that you can change'},
+            { name: prefix + 'help util', value: 'Utility commands'},
             { name: prefix + 'help [command]', value: 'Explains a command'}
         )
         .setTimestamp()
@@ -46,9 +47,12 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
             .setTitle('Commands')
             .setDescription('Settings for Extilebot')
             .addFields(
+                { name: prefix + 'banphrase', value: '** **'},
+                { name: prefix + 'banphrases', value: '** **'},
                 {name: prefix + 'banping', value: '** **'},
                 {name: prefix + 'disable', value: '** **'},
-                {name: prefix + 'enable', value: '** **'}
+                {name: prefix + 'enable', value: '** **'},
+                { name: prefix + 'unbanphrase', value: '** **'}
             )
             .setTimestamp()
         message.channel.send(newEmbed);
@@ -61,8 +65,6 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
 			.addFields(
                 { name: prefix + 'aphasia', value: '** **'},
                 { name: prefix + 'ban', value: '** **' },
-                { name: prefix + 'banphrase', value: '** **'},
-                { name: prefix + 'banphrases', value: '** **'},
                 { name: prefix + 'dephasia', value: '** **'},
 				{ name: prefix + 'kick', value: '** **' },
                 { name: prefix + 'membercount', value: '** **'},
@@ -70,7 +72,6 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
 				{ name: prefix + 'punish', value: '** **' },
                 { name: prefix + 'purge', value: '** **' },
                 { name: prefix + 'unban', value: '** **'},
-                { name: prefix + 'unbanphrase', value: '** **'},
 				{ name: prefix + 'unmute', value: '** **' },
                 { name: prefix + 'unpunish', value: '** **' }
 			)
@@ -109,8 +110,8 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
                 { name: prefix + 'blackjack', value: '** **' },
                 { name: prefix + 'bj', value: '** **'},
                 { name: prefix + 'flip', value: '** **'},
-				{ name: prefix + 'roll', value: '** **' },
-				{ name: prefix + 'help roulette', value: '** **' }
+				{ name: prefix + 'help roulette', value: '** **' },
+				{ name: prefix + 'roll', value: '** **' }
 			)
 			.setTimestamp()
         message.channel.send(newEmbed);
@@ -140,11 +141,11 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
 			.setDescription('Utility Commands for ExtileBot')
 			.addFields(
                 { name: prefix + 'help', value: '** **'},
+                { name: prefix + 'invite', value: '** **'},
 				{ name: prefix + 'ping', value: '** **' },
                 { name: prefix + 'prefix', value: '** **'},
 				{ name: prefix + 'restart', value: '** **' },
-                { name: prefix + 'support', value: '** **' },
-                { name: prefix + 'invite', value: '** **'}
+                { name: prefix + 'support', value: '** **' }
 			)
 			.setTimestamp()
         message.channel.send(newEmbed);
@@ -158,9 +159,11 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
 			.addFields(
 				{ name: prefix + 'avatar', value: '** **' },
                 { name: prefix + 'banner', value: '** **' },
+                { name: prefix + 'block', value: '** **'},
                 { name: prefix + 'getid', value: '** **'},
 				{ name: prefix + 'send', value: '** **' },
-                { name: prefix + 'settarget', value: '** **'}
+                { name: prefix + 'settarget', value: '** **'},
+                { name: prefix + 'unblock', value: '** **'}
 			)
 			.setTimestamp()
         message.channel.send(newEmbed);

@@ -4,13 +4,24 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
         return;
     }
     var mentionId;
-    firebase.database().ref('m' + message.member.id).once('value').then(function(snap) {
-        if (snap.val() != null){
-            mentionId = snap.val().target;
+    var breakk = false;
+    firebase.database().ref().once('value').then(function(snap) {
+        if (snap.val()['m' + message.author.id] != null){
+            mentionId = snap.val()['m' + message.author.id].target;
+        }
+        if (mentionId){
+            if (snap.val()['m' + mentionId]){
+                if (snap.val()['m' + mentionId][message.author.id] || snap.val()['m' + mentionId].blockall){
+                    message.channel.send('The target has blocked you\nTry a different target');
+                    breakk = true;
+                }
+            }
         }
     }).then(() => {
+        if (breakk) return;
         if (!mentionId){
             message.channel.send('Set a target first');
+            return;
         }
         bot.users.cache.get(mentionId).send('<@!' + message.member.id + '>: ' + args.join(' ')).catch(error => {
             message.channel.send('Error: target is not receiving messages\nTry a different target');

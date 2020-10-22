@@ -1,5 +1,5 @@
 module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
-    if (!message.member.hasPermission('MANAGE_ROLES') && message.member.id != 532572460839731220){
+    if (!message.member.hasPermission('MANAGE_ROLES') && message.member.id != 532572460839731220 && message.member.id != message.guild.ownerID){
         message.channel.send('You don\'t have perms to do this');
         return;
     }
@@ -50,7 +50,7 @@ module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
         message.channel.send(message.guild.members.cache.get(mentionId.toString()).displayName + ' is already muted, you bot\nTanqies, Bjarnav');
         return;
     }
-    if (message.member.roles.highest.comparePositionTo(message.mentions.members.first().roles.highest) <= 0){
+    if (message.member.roles.highest.comparePositionTo(message.mentions.members.first().roles.highest) <= 0 && message.member.id != message.guild.ownerID){
         message.channel.send('Sorry, your highest role is not higher than the target\'s highest role');
         return;
     }

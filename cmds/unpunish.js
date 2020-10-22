@@ -1,5 +1,5 @@
 module.exports.run = async (bot, message, args, firebase, prefix, oofed) => {
-    if (!message.member.hasPermission('MANAGE_ROLES') && message.member.id != 532572460839731220){
+    if (!message.member.hasPermission('MANAGE_ROLES') && message.member.id != 532572460839731220 && message.member.id != message.guild.ownerID){
         message.channel.send('You don\'t have perms to do this');
         return;
     }

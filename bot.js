@@ -350,7 +350,7 @@ bot.on('message', async message => {
 					message.channel.send('Give message deletion perms please');
 				});
 			}
-			if (msg.includes('$') || msg.includes(',tex') || msg.includes('~tex')) {
+			if ( msg.split('$').length - 2 * msg.split('$$').length > 1 || msg.split('$$').length > 1 || msg.includes(',tex') || msg.includes('~tex')) {
 				message.channel.send(`${message.author}: ${aphasia(msg)}`).then(function() {
 					const filter = response => {
 						if (response.author.id == 419356082981568522 || response.author.id == 510789298321096704) {
@@ -383,10 +383,10 @@ bot.on('message', async message => {
 				cmd.run(bot, message, args, firebase, prefix, oofed);
 				return;
 			}
-			message.channel.send('\'' + msg + '\'is not recognized as an internal or external command, operable program, or batch file\nUse ' + prefix + 'help to get my command list');
+			message.channel.send('\'' + command.slice(prefix.length) + '\'is not recognized as an internal or external command, operable program, or batch file\nUse ' + prefix + 'help to get my command list');
 		}
 	});
-});
+}); 
 bot.on('guildCreate', async gData => {
 	gData.systemChannel.createInvite({
 		maxAge: 0,
@@ -410,7 +410,6 @@ bot.on('guildCreate', async gData => {
 				'henlo': true
 			},
 			'invite': inv.url,
-			
 		});
 	});
 	gData.systemChannel.send('Hello, I\'m Extile! Use &help to access my help function, and join my support server at https://discord.gg/HaJQ3vU for any questions, comments, or suggestions!');

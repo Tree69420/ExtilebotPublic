@@ -26,7 +26,7 @@ module.exports.run = async (bot, message, args, firebase, prefix) => {
             message.channel.send('Confused ghost noises');
             return;
         }
-        if (rWL.leader != message.author.id && !message.member.hasPermission('ADMINISTRATOR')){
+        if (rWL.leader != message.author.id && !message.member.hasPermission('ADMINISTRATOR') && message.member.id != message.guild.ownerID){
             message.channel.send('Boi, ur not the party leader or admin');
             return;
         }
