@@ -388,30 +388,36 @@ bot.on('message', async message => {
 	});
 }); 
 bot.on('guildCreate', async gData => {
+	var inv2;
 	gData.systemChannel.createInvite({
 		maxAge: 0,
 		unique: false
 	}).then(inv => {
-		firebase.database().ref(gData.id).update({
-			'guildName': gData.name,
-			'guildOwner': gData.owner.user.username,
-			'guildOwnerId': gData.owner.id,
-			'guildMembercount': gData.memberCount,
-			'prefix': '&',
-			'punishedMembers' : {},
-			'aphasicMembers' : {},
-			'rouletteWL' : {},
-			'rouletteGame' : {},//{leader: leaderid, playerList: {set of the things}, order: [set], curIndex: 0, playersLeft: {set of ids}}
-			'hype': 0,
-			'aresp': {
-				'dadjoking': true,
-				'eeeee': true,
-				'lawl': true,
-				'henlo': true
-			},
-			'invite': inv.url,
-		});
+		var inv2 = inv.url;
 	});
+	firebase.database().ref(gData.id).update({
+		'guildName': gData.name,
+		'guildOwner': gData.owner.user.username,
+		'guildOwnerId': gData.owner.id,
+		'guildMembercount': gData.memberCount,
+		'prefix': '&',
+		'punishedMembers' : {},
+		'aphasicMembers' : {},
+		'rouletteWL' : {},
+		'rouletteGame' : {},//{leader: leaderid, playerList: {set of the things}, order: [set], curIndex: 0, playersLeft: {set of ids}}
+		'hype': 0,
+		'aresp': {
+			'dadjoking': true,
+			'eeeee': true,
+			'lawl': true,
+			'henlo': true
+		},
+	});
+	if (inv2){
+		firebase.database().ref(gData.id).set({
+			invite: inv2
+		});
+	}
 	gData.systemChannel.send('Hello, I\'m Extile! Use &help to access my help function, and join my support server at https://discord.gg/HaJQ3vU for any questions, comments, or suggestions!');
 	bot.user.setActivity('&help | ' + bot.guilds.cache.size.toString() + ' servers', { type: 'WATCHING' });
 });
