@@ -393,7 +393,7 @@ bot.on('guildCreate', async gData => {
 		maxAge: 0,
 		unique: false
 	}).then(inv => {
-		var inv2 = inv.url;
+		inv2 = inv.url;
 	});
 	firebase.database().ref(gData.id).update({
 		'guildName': gData.name,
